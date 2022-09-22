@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../provider/employee_provider.dart';
+import '../Screens/employee_details.dart';
+import 'employee_card.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
   @override
@@ -25,33 +30,52 @@ class CustomSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    return Column();
+    return Consumer<EmployeeProvider>(
+        builder: ((context, value, child) => ListView.builder(
+              padding: EdgeInsets.all(16),
+              itemCount: value.searchData(query: query).length,
+              itemBuilder: (context, index) => GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => EmployeeDetails(
+                              employee: value.searchData(query: query)[index],
+                            )));
+                  },
+                  child: EmployeeCard(
+                    empCompany:
+                        value.searchData(query: query)[index].company?.name ??
+                            "",
+                    empId: value.searchData(query: query)[index].id!,
+                    empImage:
+                        value.searchData(query: query)[index].profileImage!,
+                    empName: value.searchData(query: query)[index].name ?? "",
+                  )),
+            )));
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    return ListView.builder(
-      padding: EdgeInsets.all(16),
-      itemCount: 10,
-      itemBuilder: (context, index) => const Card(
-        elevation: 3,
-        child: ListTile(
-          leading: Image(
-              image: NetworkImage(
-                  "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=800")),
-          title: Text(
-            "Employee Name",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            overflow: TextOverflow.ellipsis,
-          ),
-          subtitle: Text(
-            "Employee Company",
-            style: TextStyle(fontSize: 14),
-            overflow: TextOverflow.ellipsis,
-          ),
-          trailing: Icon(Icons.arrow_forward_ios),
-        ),
-      ),
-    );
+    print(query);
+    return Consumer<EmployeeProvider>(
+        builder: ((context, value, child) => ListView.builder(
+              padding: EdgeInsets.all(16),
+              itemCount: value.searchData(query: query).length,
+              itemBuilder: (context, index) => GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => EmployeeDetails(
+                              employee: value.searchData(query: query)[index],
+                            )));
+                  },
+                  child: EmployeeCard(
+                    empCompany:
+                        value.searchData(query: query)[index].company?.name ??
+                            "",
+                    empId: value.searchData(query: query)[index].id!,
+                    empImage:
+                        value.searchData(query: query)[index].profileImage!,
+                    empName: value.searchData(query: query)[index].name ?? "",
+                  )),
+            )));
   }
 }
