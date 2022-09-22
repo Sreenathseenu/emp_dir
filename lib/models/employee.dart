@@ -5,7 +5,7 @@ class Employee {
   String? email;
   String? profileImage;
   Address? address;
-  int? phone;
+  String? phone;
   String? website;
   Company? company;
 
@@ -21,15 +21,15 @@ class Employee {
       this.company});
 
   Employee.fromJson(Map<String, dynamic> json) {
-    id = json['id']??"";
+    id = json['id'];
     name = json['name']??"";
     username = json['username']??"";
     email = json['email']??"";
     profileImage = json['profile_image']??"";
     address =
         json['address'] != null ? new Address.fromJson(json['address']) : null;
-    phone = json['phone'];
-    website = json['website'];
+    phone = json['phone']??"";
+    website = json['website']??"";
     company =
         json['company'] != null ? new Company.fromJson(json['company']) : null;
   }
@@ -63,10 +63,10 @@ class Address {
   Address({this.street, this.suite, this.city, this.zipcode, this.geo});
 
   Address.fromJson(Map<String, dynamic> json) {
-    street = json['street'];
-    suite = json['suite'];
-    city = json['city'];
-    zipcode = json['zipcode'];
+    street = json['street']??"";
+    suite = json['suite']??"";
+    city = json['city']??"";
+    zipcode = json['zipcode']??"";
     geo = json['geo'] != null ? new Geo.fromJson(json['geo']) : null;
   }
 
@@ -90,8 +90,8 @@ class Geo {
   Geo({this.lat, this.lng});
 
   Geo.fromJson(Map<String, dynamic> json) {
-    lat = json['lat'];
-    lng = json['lng'];
+    lat = json['lat']??"";
+    lng = json['lng']??"";
   }
 
   Map<String, dynamic> toJson() {
@@ -110,9 +110,9 @@ class Company {
   Company({this.name, this.catchPhrase, this.bs});
 
   Company.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    catchPhrase = json['catchPhrase'];
-    bs = json['bs'];
+    name = json['name']??"";
+    catchPhrase = json['catchPhrase']??"";
+    bs = json['bs']??"";
   }
 
   Map<String, dynamic> toJson() {
