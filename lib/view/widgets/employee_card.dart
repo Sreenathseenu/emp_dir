@@ -21,7 +21,7 @@ class EmployeeCard extends StatelessWidget {
       child: ListTile(
         leading: Hero(
           tag: empId.toString(),
-          child: Image(image: NetworkImage(empImage==""?"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png":empImage)),
+          child:empImage==""? const Icon(Icons.account_box_outlined,size: 40,): Image(image:NetworkImage(empImage)),
         ),
         title: Text(
           empName,

@@ -30,16 +30,18 @@ class _MyHomePageState extends State<MyHomePage> {
                       showSearch(
                           context: context, delegate: CustomSearchDelegate());
                     },
-                    icon: Icon(Icons.search))
+                    icon: const Icon(Icons.search))
               ],
             ),
             body: snapshot.connectionState == ConnectionState.waiting
-                ? Center(
+                ? const Center(
                     child: CircularProgressIndicator(),
                   )
-                : Consumer<EmployeeProvider>(
+                :snapshot.hasError?const Center(
+                    child: Text("OOPS! Some issue has been occured"),
+                  ): Consumer<EmployeeProvider>(
                     builder: ((context, value, child) => ListView.builder(
-                          padding: EdgeInsets.all(16),
+                          padding: const EdgeInsets.all(16),
                           itemCount: value.employee.length,
                           itemBuilder: (context, index) => GestureDetector(
                               onTap: () {

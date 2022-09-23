@@ -10,7 +10,7 @@ class CustomSearchDelegate extends SearchDelegate {
   List<Widget> buildActions(BuildContext context) {
     return [
       IconButton(
-        icon: Icon(Icons.clear),
+        icon: const Icon(Icons.clear),
         onPressed: () {
           query = '';
         },
@@ -21,7 +21,7 @@ class CustomSearchDelegate extends SearchDelegate {
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-      icon: Icon(Icons.arrow_back),
+      icon: const Icon(Icons.arrow_back),
       onPressed: () {
         close(context, null);
       },
@@ -31,8 +31,10 @@ class CustomSearchDelegate extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     return Consumer<EmployeeProvider>(
-        builder: ((context, value, child) => ListView.builder(
-              padding: EdgeInsets.all(16),
+        builder: ((context, value, child) =>value.searchData(query: query).isEmpty?const Center(
+                    child: Text("No Matches Found"),
+                  ): ListView.builder(
+              padding: const EdgeInsets.all(16),
               itemCount: value.searchData(query: query).length,
               itemBuilder: (context, index) => GestureDetector(
                   onTap: () {
@@ -55,10 +57,12 @@ class CustomSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    print(query);
+    
     return Consumer<EmployeeProvider>(
-        builder: ((context, value, child) => ListView.builder(
-              padding: EdgeInsets.all(16),
+        builder: ((context, value, child) =>value.searchData(query: query).isEmpty?const Center(
+                    child: Text("No Matches Found"),
+                  ): ListView.builder(
+              padding: const EdgeInsets.all(16),
               itemCount: value.searchData(query: query).length,
               itemBuilder: (context, index) => GestureDetector(
                   onTap: () {

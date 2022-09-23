@@ -30,9 +30,11 @@ class EmployeeDetails extends StatelessWidget {
                 child: Hero(
                   tag: employee.id.toString(),
                   child: CircleAvatar(
+                    backgroundColor: Colors.white,
                     maxRadius: 50,
-                    backgroundImage: NetworkImage(
-                        employee.profileImage==""? "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png":employee.profileImage!),
+                    child: employee.profileImage==""?const Icon(Icons.account_circle_outlined,size: 60,):null,
+                    backgroundImage:employee.profileImage==""?null: NetworkImage(
+                         employee.profileImage!),
                   ),
                 ),
               ),
