@@ -1,16 +1,26 @@
 # empdir
 
-A new Flutter project.
+Employee directory application
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Guidelines for the app
 
-A few resources to get you started if this is your first Flutter project:
+1. Fetch the employee’s JSON data from the following URL
+http://www.mocky.io/v2/5d565297300000680030a986
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+2. Store the data in the database. Once the data is stored, it should always
+use the data from the database without calling the web-service.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+3. Fetch the list of employee’s from the database and display in a list
+(Profile Image, Name, Company Name)
+
+4. The app should have an option to search the employee using the name
+or email address.
+
+5. On taping the employee information from the list, The app should
+navigate to the employee details screen and display the full details
+(Profile Image, Name, User Name, Email address, Address, Phone,
+Website, Company Details)
+
+6. Kindly use any state management approaches (Provider, Bloc, etc..) for your app.
